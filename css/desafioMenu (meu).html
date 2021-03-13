@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Desafio Menu</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ccc;
+            margin: 0;
+        }
+
+        .cabecalho {
+            position: sticky;
+            top: 0;
+            background-color: #333;
+            height: 50px;
+            padding: 10px;
+            box-shadow: 0px 3px 0px 0px turquoise;
+        }
+
+        .cabecalho * {
+            display: inline-block;
+            vertical-align: middle;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .logo a {
+            height: 40px;
+            margin-right: 40px;
+        }
+
+        .logo img {
+            max-height: 100%;
+            max-width: 100%;
+        }
+
+        .menu a {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-family: 'Oswald';
+            height: 30px;
+            line-height: 30px;
+            padding: 10px;
+        }
+
+        .menu a:hover, .menu a.hover {
+            color: black;
+            background-color: turquoise;
+        }
+
+        .autenticacao {
+            position: absolute;
+            right: 0;
+            margin-top: 5px;
+            margin-right: 50px;
+        }
+
+        .botao {
+            border-radius: 25px;
+            width: 80px;
+        }
+
+        .destaque {
+            background-color: red;
+        }
+
+        .autenticacao a {
+            color: white;
+            text-decoration: none;
+            text-align: center;
+            font-family: 'Oswald';
+            height: 30px;
+            line-height: 30px;
+            padding: 5px;
+        }
+
+        .menu-toggle {
+            display: none;
+        }
+
+        @media (max-width: 700px) {
+            .autenticacao {
+                display: none;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                position: absolute;
+                display: inline-block;
+                right: 10px;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <a href="#inicio">
+                <img src="http://files.cod3r.com.br/curso-web/logo.png" alt="Logo" />
+            </a>
+        </div>
+        <button class="menu-toggle">
+            <i class="fa fa-lg fa-bars"></i>
+        </button>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="#inicio">Início</a>
+                </li>
+                <li>
+                    <a href="#cursos">Cursos</a>
+                </li>
+                <li>
+                    <a href="#sobre">Sobre</a>
+                </li>
+                <li>
+                    <a href="#contato">Contato</a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="autenticacao">
+            <a href="#login">Login</a>
+            <a href="#registar" class="botao destaque">Registrar</a>
+        </aside>
+    </header>
+
+    <script>
+        window.addEventListener('hashchange', function (e) {
+            const hash = location.hash
+            const element = document.querySelector(`.menu a[href='${hash}']`)
+            if (element) {
+                element.classList.add("hover")                
+            }
+
+            const oldhash = e.oldURL.substring(e.oldURL.lastIndexOf("#"))
+            const oldelement = document.querySelector(`.menu a[href='${oldhash}']`)
+
+            if (oldelement) {
+                oldelement.classList.remove("hover")                
+            }
+        });
+    </script>
+</body>
+
+</html>

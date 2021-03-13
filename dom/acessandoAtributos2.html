@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Acessando Atributos #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+</head>
+
+<body class='conteudo exercicio'>
+    <div>
+        <label for="compras">Compras</label>
+        <ul id="compras" destino='escritório' data-urgencia="5">
+            <li>Café</li>
+            <li>Água</li>
+            <li>Copo Descartável</li>
+        </ul>
+    </div>
+    <script>
+        const lista = document.querySelector('div ul[destino="escritório"]')
+        console.log('Elemento "ul"......')
+        console.log('childNodes', lista.childNodes)
+        console.log('destino', lista.destino) //undefined!
+        console.log('getAttribute("destino")', lista.getAttribute('destino')) //agora sim!
+        console.log('hasAttribute("destino")', lista.hasAttribute('destino')) //retorna verdadeiro
+        lista.setAttribute('destino', 'empresa')    //Alterar um atributo que já existe ou...
+        lista.setAttribute('status', 'aberto')  //Criar um novo atributo
+        lista.removeAttribute('destino')    //Deletar atributo
+        console.log(lista.dataset) // retorna todos os atributos que possuam o prefixo "data-"
+        lista.dataset.urgencia = 4
+        console.log('urgencia:',lista.dataset.urgencia)
+        console.log(lista.getAttribute('data-urgencia'))    //para usar o data-urgencia pelo atributo é necessário o prefixo
+
+        //cuidado! Alguns atributos só podem ser acessados de maneira especial
+        const label = document.querySelector('label')
+        console.log(label.for)  //retorna undefined
+        console.log(label.htmlFor)  //retorna o atributo corretamente pela notação ponto
+        console.log(label.getAttribute('for'))  //com o getAttribute, isso não é necessário
+    </script>
+</body>
+
+</html>
